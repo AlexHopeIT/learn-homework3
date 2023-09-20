@@ -185,7 +185,7 @@ for department in departments_and_taxes:
                 print(f'Отдел {department["title"]}. ' 
                       f'Зарплата {employer["first_name"]} составляет: с учетом налогов {employer["salary_rub"]},'
                       'без учета налогов' 
-                      f'{employer["salary_rub"] + (employer["salary_rub"] * 0.13 + employer["salary_rub"] * 0.2)}')
+                      f'{employer["salary_rub"] + (employer["salary_rub"] * 0.13 + employer["salary_rub"])}')
             elif department['title'] == 'IT department': 
                 print(f'Отдел {department["title"]}. ' 
                       f'Зарплата {employer["first_name"]} составляет: с учетом налогов {employer["salary_rub"]},'
@@ -199,7 +199,7 @@ monthly_tax_burden_IT = []
 for department in departments_and_taxes:
     for employer in department['employers']:
         if department['title'] == 'HR department':
-            monthly_tax_burden_HR.append(employer['salary_rub'] * (13 / 100 + 20 / 100))
+            monthly_tax_burden_HR.append(employer['salary_rub'] * 13 / 100)
         elif department['title'] == 'IT department':
             monthly_tax_burden_IT.append(employer['salary_rub'] * (13 / 100 + 6 / 100))
 HR_burden = sum(monthly_tax_burden_HR)
@@ -217,7 +217,7 @@ tax_more_100k = []
 for department in departments_and_taxes:
     for employer in department['employers']:
             if department['title'] == 'HR department':
-                if (employer['salary_rub'] * (13 / 100 + 20 / 100) * 12) > 100000:
+                if (employer['salary_rub'] * 13 / 100 * 12) > 100000:
                     tax_more_100k.append(employer['first_name'])
             elif department['title'] == 'IT department': 
                 if (employer['salary_rub'] * (13 / 100 + 6 / 100) * 12) > 100000:
@@ -231,7 +231,7 @@ min_taxes_emp = []
 for department in departments_and_taxes:
     for employer in department['employers']:
         if department['title'] == 'HR department':
-            tax_emp = employer['salary_rub'] * (13 / 100 + 20 / 100)
+            tax_emp = employer['salary_rub'] * (13 / 100)
             if tax_emp < min_tax[0]:
                 min_tax.clear()
                 min_tax.append(tax_emp)
